@@ -10,4 +10,6 @@
     <string name="dont_have_pan">I don\'t have a PAN</string>
     <string name="login_info"><![CDATA[Providing PAN & Date of Birth helps us find and fetch your KYC from a central registry by the Government of India. Learn More]]></string>
     <string name="learn_more">Learn More</string>
+    <string name="next_success_message">Details submitted successfully</string>
+
 </resources>

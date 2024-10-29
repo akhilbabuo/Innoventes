@@ -41,6 +41,19 @@ class LoginScreen : Fragment() {
             ) {
                 Toast.makeText(context, getString(R.string.learn_more), Toast.LENGTH_SHORT).show()
             }
+
+            btNext.setOnClickListener {
+                Toast.makeText(
+                    context,
+                    getString(R.string.next_success_message),
+                    Toast.LENGTH_SHORT
+                ).show()
+                requireActivity().finish()
+            }
+
+            tvDontHavePan.setOnClickListener {
+                requireActivity().finish()
+            }
         }
     }
 
