@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Innoventes</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="cpy_name">S.</string>
+    <string name="login_heading">First of the few step to set you up with a Bank Account</string>
+    <string name="pan_number">pan number</string>
+    <string name="birthdate">birthdate</string>
+    <string name="next">next</string>
+    <string name="dont_have_pan">I don\'t have a PAN</string>
+    <string name="login_info"><![CDATA[Providing PAN & Date of Birth helps us find and fetch your KYC from a central registry by the Government of India. Learn More]]></string>
+    <string name="learn_more">Learn More</string>
+</resources>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="roboto" >
+        <item name="fontFamily">@font/roboto_regular</item>
+        <item name="android:textColor">@color/title_black</item>
+    </style>
+    <style name="roboto_bold">
+        <item name="fontFamily">@font/roboto_black</item>
+        <item name="fontWeight">900</item>
+        <item name="android:textColor">@color/title_black</item>
+    </style>
+
+    <style name="roboto_small" parent="roboto">
+        <item name="android:textSize">12sp</item>
+    </style>
+    <style name="roboto_medium" parent="roboto">
+        <item name="android:textSize">14sp</item>
+    </style>
+    <style name="roboto_large" parent="roboto">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+</resources>

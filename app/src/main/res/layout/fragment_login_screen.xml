@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".login.ui.LoginScreen">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.blackbird.innoventes.login.ui.LoginViewModel" />
+
+        <variable
+            name="binder"
+            type="com.blackbird.innoventes.login.binder.LoginBinder" />
+
+        <import type="com.blackbird.innoventes.extentions.DateKt" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="24dp"
+        android:paddingHorizontal="46sp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCmpName"
+            style="@style/roboto_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cpy_name"
+            android:textColor="#fc5603"
+            android:textSize="36sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvHeading1"
+            style="@style/roboto_bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36sp"
+            android:text="@string/login_heading"
+            android:textSize="24sp"
+            app:layout_constraintTop_toBottomOf="@id/tvCmpName" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPanNumberTitle"
+            style="@style/roboto_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48sp"
+            android:text="@string/pan_number"
+            android:textAllCaps="true"
+            android:textColor="@color/dark_grey"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvHeading1" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/etPanNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tvPanNumberTitle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                validatePan="@{binder}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+                android:inputType="textCapCharacters|textNoSuggestions"
+                android:maxLength="10"
+                android:text="@={binder.panInput}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvBirthDateTitle"
+            style="@style/roboto_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36sp"
+            android:text="@string/birthdate"
+            android:textAllCaps="true"
+            android:textColor="@color/dark_grey"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etPanNumber" />
+
+        <LinearLayout
+            android:id="@+id/dateContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tvBirthDateTitle">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvBirthDateTitle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    binder="@{binder}"
+                    setLargestInt="@{31}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:text="@={binder.date}" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etMonth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24sp"
+                android:layout_weight=".2"
+                app:layout_constraintStart_toEndOf="@id/etDate"
+                app:layout_constraintTop_toBottomOf="@id/tvBirthDateTitle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    binder="@{binder}"
+                    setLargestInt="@{12}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:text="@={binder.month}" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etYear"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24sp"
+                android:layout_weight="1"
+                android:inputType="number"
+                app:layout_constraintStart_toEndOf="@id/etMonth"
+                app:layout_constraintTop_toBottomOf="@id/tvBirthDateTitle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    binder="@{binder}"
+                    setError="@{binder.dateValidationError}"
+                    setLargestInt="@{DateKt.getCurrentYear()}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:maxLength="4"
+                    android:text="@={binder.year}" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tvDontHavePan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16sp"
+            android:text="@string/dont_have_pan"
+            android:textColor="@color/purple"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btNext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16sp"
+            android:background="@drawable/button_background"
+            android:clickable="@{binder.credentialsValid}"
+            android:enabled="@{binder.credentialsValid}"
+            android:focusable="@{binder.credentialsValid}"
+            android:text="@string/next"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@id/tvDontHavePan" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16sp"
+            android:text="@string/login_info"
+            android:textColor="@color/grey"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@id/btNext" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
